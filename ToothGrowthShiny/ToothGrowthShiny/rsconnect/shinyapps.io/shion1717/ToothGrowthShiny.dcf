@@ -1,0 +1,12 @@
+name: ToothGrowthShiny
+title: ToothGrowthShiny
+username:
+account: shion1717
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1497406
+bundleId: 2602194
+url: https://shion1717.shinyapps.io/ToothGrowthShiny/
+when: 1574209967.21478
+asMultiple: FALSE
+asStatic: FALSE

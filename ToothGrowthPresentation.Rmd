@@ -1,0 +1,44 @@
+---
+title: "ToothGrowthShiny App"
+author: "Ian Chua"
+date: "19 November 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## ToothGrowth dataset
+
+This presentation explains the Shiny application found [here](https://shion1717.shinyapps.io/ToothGrowthShiny/).
+
+Interested in knowing how the dosage of Vitamin C can affect Tooth Growth in Guinea pigs? In the application, you can explore the effects of different dosages of Vitamin C, and the method in which it was administered on Tooth Growth in Guinea pigs.
+
+Documentation on the dataset used (The Effect of Vitamin C on Tooth Growth in Guinea Pigs) can be found [here](https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/ToothGrowth.html).
+
+## Overview of the app
+
+The app consists of two panels. In the side panel on the left, the User is able to vary the Vitamin C administration method (Orange Juice or Ascorbic Acid or Both). Changing this will affect the box plot and the t test being performed.
+
+The User is also able to set a confidence level to perform the t test, as well as the dosages to compare. Changing these options will affect the t test results.
+
+## Main Panel - Boxplot
+
+In the main panel, there are two tabs. The first tab "Boxplot" shows a box plot of the length of Tooth Growth against the dosages. You can toggle the sidebar to show only Orange Juice, Ascorbic Acid, or both.
+
+```{r boxplot, echo = FALSE,fig.height=3}
+library(ggplot2)
+ggplot(data=ToothGrowth,aes(x=as.factor(dose),y=len))+geom_boxplot(aes(color=supp))+ggtitle("Boxplot of Tooth Growth Length against Dosage")+
+                xlab("Dosage (mg/day)")+ylab("Length")
+```
+
+## Main Panel - Student's t test
+
+In the second tab, the outputs of the t test with the parameters set in the side bar is shown. A confidence interval can be formed, so that the user is able to estimate the range of values of the Tooth Growth length between the different dosages.
+
+```{r ttest, echo = FALSE,fig.height=3}
+print(t.test(subset(ToothGrowth,dose == 0.5)$len,subset(ToothGrowth,dose==1)$len,
+                       paired=FALSE,var.equal=FALSE))
+```
+
